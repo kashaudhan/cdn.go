@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 
+	services "cdn.go/services/image"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,11 +16,11 @@ func Api(ctx *gin.Engine) {
 
 	// CDN group
 	cdn := api.Group("/cdn")
-	cdn.GET("/image/:filename", func(ctx *gin.Context) {})
+	cdn.GET("/image/:filename", services.GetImage)
 	cdn.GET("/doc/:filename", func(ctx *gin.Context) {})
 	
 	// Upload group
 	upload := api.Group("/upload")
-	upload.POST("/image", func(ctx *gin.Context) {})
+	upload.POST("/image", services.UploadImage)
 	upload.POST("/doc", func(ctx *gin.Context) {})
 }

@@ -29,5 +29,5 @@ func InitDB() {
 	}
 
 	DB.SetConnMaxIdleTime(5)
-	CreateImageTable(DB)
+	CreateTables(DB)
 }
