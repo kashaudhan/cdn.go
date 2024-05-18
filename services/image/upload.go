@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +18,7 @@ func UploadImage(ctx *gin.Context) {
 
 	fileHeader, err := ctx.FormFile("image")
 	fileName := ctx.PostForm("name")
+	fileName = strings.ReplaceAll(fileName, "/", "-")
 
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
